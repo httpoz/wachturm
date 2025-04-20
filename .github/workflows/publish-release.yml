@@ -1,0 +1,12 @@
+name: Publish GitHub Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  call-publish-release:
+    uses: useless-solutions/.github/.github/workflows/release-publish.yml@main
