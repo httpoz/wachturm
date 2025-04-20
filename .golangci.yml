@@ -1,0 +1,39 @@
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - vendor
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gofmt
+    - goimports
+    - gosec
+    - misspell
+    - revive
+    - unconvert
+
+linters-settings:
+  gosec:
+    excludes:
+      - G204  # Subprocess launch with variable (needed for apt commands)
+  revive:
+    rules:
+      - name: var-naming
+        disabled: false
+      - name: exported
+        disabled: false
+        arguments:
+          - "checkPrivateReceivers"
+          - "sayRepetitiveInsteadOfStutters"
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0

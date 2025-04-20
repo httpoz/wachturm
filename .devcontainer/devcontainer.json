@@ -1,0 +1,29 @@
+{
+  "name": "ubuntu-update-manager",
+  "image": "ubuntu:22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.24.1"
+    }
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y curl dpkg apt-utils sudo",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go"
+      ]
+    }
+  },
+  "containerEnv": {
+    "ENV_FILE_PATH": ".devcontainer/devcontainer.env"
+  },
+  "remoteEnv": {
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "WATCHTOWER_TELEGRAM_BOT_KEY": "${localEnv:WATCHTOWER_TELEGRAM_BOT_KEY}",
+    "WATCHTOWER_TELEGRAM_CHAT_ID": "${localEnv:WATCHTOWER_TELEGRAM_CHAT_ID}"
+  }
+}
