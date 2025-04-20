@@ -6,9 +6,6 @@ concurrency:
 on:
   workflow_call:
 
-permissions:
-  contents: read
-
 jobs:
   update_release_draft:
     permissions:

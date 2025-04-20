@@ -1,0 +1,8 @@
+feature:
+  - head-branch: ["feature"]
+fix:
+  - head-branch: ["fix"]
+chore:
+  - head-branch: ["chore"]
+breaking-change:
+  - head-branch: ["breaking"]
