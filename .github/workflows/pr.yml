@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/labeler@v5
 
-  go_lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
       - name: lint
         uses: golangci/golangci-lint-action@v7
   
-  go_test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
