@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/httpoz/watchtower/pkg/packagemanager"
-	"github.com/openai/openai-go"
+	"github.com/openai/openai-go/responses"
 )
 
 // TestScorePackageRisks tests the ScorePackageRisks function with a mock OpenAI client
@@ -27,12 +27,15 @@ func TestScorePackageRisks(t *testing.T) {
 	}`
 
 	// Create mock chat completions function
-	mockChatCompletions := func(ctx context.Context, params openai.ChatCompletionNewParams) (*openai.ChatCompletion, error) {
-		return &openai.ChatCompletion{
-			Choices: []openai.ChatCompletionChoice{
+	mockResponsesCreate := func(ctx context.Context, params responses.ResponseNewParams) (*responses.Response, error) {
+		return &responses.Response{
+			Output: []responses.ResponseOutputItemUnion{
 				{
-					Message: openai.ChatCompletionMessage{
-						Content: mockRiskResponse,
+					Content: []responses.ResponseOutputMessageContentUnion{
+						{
+							Type: "output_text",
+							Text: mockRiskResponse,
+						},
 					},
 				},
 			},
@@ -40,8 +43,8 @@ func TestScorePackageRisks(t *testing.T) {
 	}
 
 	// Create mock risk score request function
-	mockRiskScoreRequest := func(ctx context.Context, packages []packagemanager.Info) ([]RiskScore, error) {
-		return []RiskScore{
+	mockRiskScoreRequest := func(ctx context.Context, packages []packagemanager.Info) ([]CompatibilityScore, error) {
+		return []CompatibilityScore{
 			{
 				Name:       "apt",
 				RiskLevel:  "low",
@@ -57,8 +60,8 @@ func TestScorePackageRisks(t *testing.T) {
 
 	// Create the assessor with our mock
 	assessor := NewOpenAIAssessor().
-		WithChatCompletionsFn(mockChatCompletions).
-		WithRiskScoreRequestFn(mockRiskScoreRequest)
+		WithResponsesNewFn(mockResponsesCreate).
+		WithCompatibilityScoreRequestFn(mockRiskScoreRequest)
 
 	// Test data
 	testPackages := []packagemanager.Info{

@@ -1,6 +1,6 @@
 module github.com/httpoz/watchtower
 
-go 1.24.1
+go 1.23
 
 require (
 	github.com/invopop/jsonschema v0.13.0
