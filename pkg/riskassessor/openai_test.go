@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/httpoz/watchtower/pkg/packagemanager"
+	"github.com/httpoz/watchturm/pkg/packagemanager"
 	"github.com/openai/openai-go/responses"
 )
 

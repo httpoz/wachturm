@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/httpoz/watchtower/pkg/packagemanager"
+	"github.com/httpoz/watchturm/pkg/packagemanager"
 )
 
 func TestStorage_WriteAndReadSnapshot(t *testing.T) {

@@ -32,14 +32,14 @@ func NewTelegramNotifier(token, chatID string) *TelegramNotifier {
 
 // DefaultTelegramNotifier creates a new TelegramNotifier using environment variables.
 func DefaultTelegramNotifier() (*TelegramNotifier, error) {
-	token := os.Getenv("WATCHTOWER_TELEGRAM_BOT_KEY")
+	token := os.Getenv("WATCHTURM_TELEGRAM_BOT_KEY")
 	if token == "" {
-		return nil, fmt.Errorf("WATCHTOWER_TELEGRAM_BOT_KEY environment variable not set")
+		return nil, fmt.Errorf("WATCHTURM_TELEGRAM_BOT_KEY environment variable not set")
 	}
 
-	chatID := os.Getenv("WATCHTOWER_TELEGRAM_CHAT_ID")
+	chatID := os.Getenv("WATCHTURM_TELEGRAM_CHAT_ID")
 	if chatID == "" {
-		return nil, fmt.Errorf("WATCHTOWER_TELEGRAM_CHAT_ID environment variable not set")
+		return nil, fmt.Errorf("WATCHTURM_TELEGRAM_CHAT_ID environment variable not set")
 	}
 
 	return NewTelegramNotifier(token, chatID), nil

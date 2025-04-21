@@ -1,4 +1,4 @@
-// Package main provides the entry point for the watchtower application.
+// Package main provides the entry point for the watchturm application.
 package main
 
 import (
@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/httpoz/watchtower/pkg/notification"
-	"github.com/httpoz/watchtower/pkg/packagemanager/apt"
-	"github.com/httpoz/watchtower/pkg/riskassessor"
-	"github.com/httpoz/watchtower/pkg/storage"
+	"github.com/httpoz/watchturm/pkg/notification"
+	"github.com/httpoz/watchturm/pkg/packagemanager/apt"
+	"github.com/httpoz/watchturm/pkg/riskassessor"
+	"github.com/httpoz/watchturm/pkg/storage"
 )
 
 func main() {
@@ -88,7 +88,7 @@ func main() {
 	}
 
 	// Send notification if TELEGRAM_BOT_TOKEN is set
-	if os.Getenv("WATCHTOWER_TELEGRAM_BOT_KEY") != "" {
+	if os.Getenv("WATCHTURM_TELEGRAM_BOT_KEY") != "" {
 		fmt.Println("Sending notification...")
 		notifier, err := notification.DefaultTelegramNotifier()
 		if err != nil {

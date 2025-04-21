@@ -10,8 +10,8 @@ GOFMT=$(GOCMD) fmt
 GOVET=$(GOCMD) vet
 
 # Binary name
-BINARY_NAME=watchtower
-CMD_DIR=./cmd/watchtower
+BINARY_NAME=watchturm
+CMD_DIR=./cmd/watchturm
 
 all: check test build
 
