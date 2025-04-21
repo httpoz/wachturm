@@ -1,4 +1,4 @@
-module github.com/httpoz/watchtower
+module github.com/httpoz/wachturm
 
 go 1.23
 
