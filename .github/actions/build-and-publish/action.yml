@@ -1,0 +1,27 @@
+name: Build and Publish
+description: 'Builds and publishes a Go application'
+
+inputs:
+  tag_name:
+    description: 'The tag name for the release'
+    required: true
+  goarch:
+    description: 'The architecture for the build'
+    required: true
+  goos:
+    description: 'The operating system for the build'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+      - name: Go Release Binaries
+        uses: wangyoucao577/go-release-action@v1
+        with:
+          github_token: ${{ env.GITHUB_TOKEN }}
+          goarch: ${{ inputs.goarch }}
+          release_name: ${{ inputs.tag_name }}
+          overwrite: true
+          project_path: "./cmd/wachturm"
+          binary_name: wachturm
+          asset_name: "wachturm-${{ inputs.tag_name }}-${{ inputs.goos }}-${{ inputs.goarch }}"

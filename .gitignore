@@ -2,3 +2,4 @@
 /vendor
 /snapshots
 coverage.out
+/dist

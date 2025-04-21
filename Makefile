@@ -19,7 +19,7 @@ run:
 	$(GOCMD) run $(CMD_DIR)
 
 build:
-	$(GOBUILD) -o $(BINARY_NAME) -v $(CMD_DIR)
+	$(GOBUILD) -o ./dist/$(BINARY_NAME) -v $(CMD_DIR)
 
 test:
 	$(GOTEST) -v ./...
