@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/httpoz/watchturm/pkg/packagemanager"
+	"github.com/httpoz/wachturm/internal/packagemanager"
 )
 
 // Constants for snapshot types
@@ -36,7 +36,7 @@ func DefaultStorage() (*Storage, error) {
 		return nil, fmt.Errorf("failed to determine home directory: %w", err)
 	}
 
-	baseDir := filepath.Join(homeDir, ".watchturm")
+	baseDir := filepath.Join(homeDir, ".wachturm")
 	if err := os.MkdirAll(baseDir, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create base directory: %w", err)
 	}

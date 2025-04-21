@@ -10,7 +10,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/httpoz/watchturm/pkg/packagemanager"
+	"github.com/httpoz/wachturm/internal/packagemanager"
 )
 
 type Manager struct {

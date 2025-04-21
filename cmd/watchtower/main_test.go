@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/httpoz/watchturm/pkg/packagemanager"
-	"github.com/httpoz/watchturm/pkg/storage"
+	"github.com/httpoz/wachturm/internal/packagemanager"
+	"github.com/httpoz/wachturm/internal/storage"
 )
 
 // mockPackageManager is a mock implementation of the packagemanager.Manager interface
@@ -125,7 +125,7 @@ func TestApplicationFlow(t *testing.T) {
 	}
 
 	// Create a temporary directory for testing
-	tempDir, err := os.MkdirTemp("", "watchturm_test")
+	tempDir, err := os.MkdirTemp("", "wachturm_test")
 	if err != nil {
 		t.Fatalf("Failed to create temporary directory: %v", err)
 	}

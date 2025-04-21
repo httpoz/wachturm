@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/httpoz/watchturm/pkg/packagemanager"
+	"github.com/httpoz/wachturm/internal/packagemanager"
 	"github.com/invopop/jsonschema"
 	"github.com/openai/openai-go"
 	"github.com/openai/openai-go/option"
