@@ -50,11 +50,7 @@ func TestTelegramNotifier_Send(t *testing.T) {
 
 	// Override the httpClient to use our test server URL
 	notifier.httpClient = &http.Client{}
-
-	// Inject the test server URL into the send function by modifying the bot token
-	// This is a bit of a hack, but it works for testing
-	notifier.botToken = server.URL[7:] // Remove the "http://" prefix
-
+	notifier.baseURL = server.URL
 	// Send a test message
 	err := notifier.Send("Test message")
 	if err != nil {
@@ -91,7 +87,7 @@ func TestTelegramNotifier_SendSummary(t *testing.T) {
 	// Create test notifier
 	notifier := NewTelegramNotifier("test_token", "test_chat_id")
 	notifier.httpClient = &http.Client{}
-	notifier.botToken = server.URL[7:] // Remove the "http://" prefix
+	notifier.baseURL = server.URL
 
 	// Send the summary
 	err = notifier.SendSummary(tempFile.Name())

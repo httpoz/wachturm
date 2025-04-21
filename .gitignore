@@ -1,3 +1,4 @@
 .devcontainer/devcontainer.env
 /vendor
 /snapshots
+coverage.out

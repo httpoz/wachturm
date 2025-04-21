@@ -15,6 +15,7 @@ type TelegramNotifier struct {
 	botToken   string
 	chatID     string
 	httpClient *http.Client
+	baseURL    string
 }
 
 // NewTelegramNotifier creates a new TelegramNotifier with the provided token and chat ID.
@@ -25,6 +26,7 @@ func NewTelegramNotifier(token, chatID string) *TelegramNotifier {
 		httpClient: &http.Client{
 			Timeout: 10 * time.Second,
 		},
+		baseURL: "https://api.telegram.org",
 	}
 }
 
@@ -51,7 +53,7 @@ func (n *TelegramNotifier) WithHTTPClient(client *http.Client) *TelegramNotifier
 
 // Send sends a notification with the provided message.
 func (n *TelegramNotifier) Send(message string) error {
-	url := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", n.botToken)
+	url := fmt.Sprintf("%s/bot%s/sendMessage", n.baseURL, n.botToken)
 
 	payload := map[string]string{
 		"chat_id": n.chatID,
