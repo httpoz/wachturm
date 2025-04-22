@@ -15,15 +15,39 @@ permissions:
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.create_release_draft.outputs.tag_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Run Release Drafter
+      - name: Create Release Draft
+        id: create_release_draft
         uses: release-drafter/release-drafter@v6
         with:
           prerelease: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  upload_release_assets:
+    needs: update_release_draft
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux]
+        goarch: [amd64, arm64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create Release Asset
+        uses: ./.github/actions/build-and-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.update_release_draft.outputs.tag_name }}
+          goarch: ${{ matrix.goarch }}
+          goos: ${{ matrix.goos }}
